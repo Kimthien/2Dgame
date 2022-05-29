@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/enemies/idle.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemy.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 4.87164
+height = 10.5014
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5.5472, 10.1672 )
+
+[node name="enemy" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5.05679 )
+shape = SubResource( 3 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="hit_collision" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 0, 5.05679 )
+shape = SubResource( 4 )
+
+[node name="get_hit" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="visions" type="Node2D" parent="."]
+position = Vector2( 4.54747e-13, 0 )
+
+[node name="vision2" type="RayCast2D" parent="visions"]
+position = Vector2( -9.09495e-13, -3.62227 )
+rotation = -1.57079
+scale = Vector2( 0.25, 2.5 )
+enabled = true
+collide_with_areas = true
+
+[node name="vision" type="RayCast2D" parent="visions"]
+position = Vector2( -1.10845e-12, -3.46478 )
+rotation = -1.43836
+scale = Vector2( 0.25, 2.5 )
+enabled = true
+collide_with_areas = true
+
+[node name="hit_direction" type="Node2D" parent="."]
+
+[node name="right_hit" type="RayCast2D" parent="hit_direction"]
+position = Vector2( 1.39054, 5.05679 )
+rotation = -1.57079
+scale = Vector2( 1.9, 0.25 )
+enabled = true
+collide_with_areas = true
+
+[node name="right_hit2" type="RayCast2D" parent="hit_direction"]
+position = Vector2( -1.39055, 5.05679 )
+rotation = 1.57079
+scale = Vector2( 1.9, 0.25 )
+enabled = true
+collide_with_areas = true
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="get_hit" to="." method="_on_get_hit_timeout"]

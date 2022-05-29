@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/KinematicBody2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 949.087, 494.743 )
+scale = Vector2( 5, 5 )
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+collision_layer = 2
+collision_mask = 12
+tile_data = PoolIntArray( 327698, 0, 0, 393237, 1, 0, 393238, 1, 0, 393239, 1, 0, 393240, 1, 0, 393241, 1, 0, 393242, 1, 0, 393243, 1, 0, 393244, 1, 0, 393245, 1, 0, 393246, 1, 0, 393247, 1, 0, 393248, 1, 0, 393249, 1, 0, 393250, 1, 0, 393251, 1, 0, 393252, 1, 0, 393253, 1, 0, 393254, 1, 0, 393255, 1, 0, 393256, 1, 0, 393257, 1, 0, 393258, 1, 0, 393259, 1, 0, 393260, 1, 0, 393261, 1, 0, 393262, 1, 0, 393263, 1, 0, 458773, 1, 0, 524309, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0 )
+
+[node name="enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 138.212, 494.743 )
+scale = Vector2( 5, 5 )
+collision_mask = 3
